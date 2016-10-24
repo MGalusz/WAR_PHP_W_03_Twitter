@@ -55,9 +55,9 @@ class Tweet {
             $row = $res->fetch_assoc();
             $tweets = new Tweet();
             $tweets->id = $row['id'];
-            $tweets->setUserId = $row['userID'];
-            $tweets->setText = $row['text'];
-            $tweets->setCreationDate = $row['creationDate'];
+            $tweets->userId = $row['userID'];
+            $tweets->text = $row['text'];
+            $tweets->creationDate = $row['creationDate'];
             return $tweets;
         } else {
             return NULL;
@@ -68,7 +68,7 @@ class Tweet {
 
 
         $query = "SELECT * FROM Tweet WHERE userID = " . $connection->real_escape_string($userID);
-        var_dump($query);
+       
         
         $tweets = [];
 
@@ -78,9 +78,9 @@ class Tweet {
                 $row = $res->fetch_assoc();
                 $tweet = new Tweet();
                 $tweet->id = $row['id'];
-                $tweet->setUserId = $row['userID'];
-                $tweet->setText = $row['text'];
-                $tweet->setCreationDate = $row['creationDate'];
+                $tweet->userId = $row['userID'];
+                $tweet->text = $row['text'];
+                $tweet->creationDate = $row['creationDate'];
                 $tweets[] = $tweet;
             }
             return $tweets;
@@ -90,7 +90,7 @@ class Tweet {
     }
 
     static public function loadAllTweets(mysqli $connection) {
-        $tweers = [];
+        $tweets = [];
         $query = "Select * FROM Tweet";
         $res = $connection->query($query);
         if ($res && $res->num_rows > 1) {
@@ -102,9 +102,9 @@ class Tweet {
                 $row = $res->fetch_assoc();
                 $tweet = new Tweet();
                 $tweet->id = $row['id'];
-                $tweet->setUserId = $row['userID'];
-                $tweet->setText = $row['text'];
-                $tweet->setCreationDate = $row['creationDate'];
+                $tweet->userId = $row['userID'];
+                $tweet->text = $row['text'];
+                $tweet->creationDate = $row['creationDate'];
                 $tweets[] = $tweet;
             }
             return $tweets;
@@ -117,7 +117,7 @@ class Tweet {
         if ($this->id == -1) {
             $query = "INSERT INTO Tweet(userID,text,creationDate)"
                     . "VALUES('$this->userId','$this->text','$this->creationDate')";
-            var_dump($query);
+            
             
             if ($connection->query($query)) {
                 $this->id = $connection->insert_id;

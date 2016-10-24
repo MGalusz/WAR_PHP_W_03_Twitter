@@ -14,3 +14,16 @@ PRIMARY KEY(ID),
 FOREIGN KEY(userID)
 REFERENCES Users(id)
 );
+
+
+CREATE TABLE  Comment (
+id INT NOT NULL AUTO_INCREMENT,
+Id_usera int NOT NULL,
+Id_postu int NOT NULL,
+text VARCHAR(255) NOT NULL,
+creationDate DATE,
+PRIMARY KEY(id),
+FOREIGN KEY(Id_usera)REFERENCES Users(id),
+FOREIGN KEY(Id_postu)REFERENCES Tweet(id)
+);
+
